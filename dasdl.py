@@ -28,13 +28,20 @@ def download_file(url, episode_num, total_episodes, title):
                         total_episodes, 
                         title))
                     sys.stdout.flush()
+            sys.stdout.write("(%d%%) Downloading episode [%d/%d] %s...done.                       \r" % (
+                int(done*100), 
+                episode_num, 
+                total_episodes, 
+                title))
+            sys.stdout.flush()
         return local_filename
 
 def main():
+    sys.stdout.write("Getting episode links...                      \r")
+    sys.stdout.flush()
     r = requests.get('https://www.destroyallsoftware.com/screencasts/catalog/')
     html = r.content
     soup = BeautifulSoup(html, 'html.parser')
-
     episodes = soup.find_all('div', {'class':'episode'})
     for i, e in enumerate(episodes):
         r = requests.get(BASE_URL + e.a['href'])
@@ -45,7 +52,6 @@ def main():
         if not match:
             match = re.search(r'source.src = "(.*)"', html)
         saved_file = download_file(match.group(1), i+1, len(episodes), title)
-
         
 if __name__ == '__main__':
     main()
