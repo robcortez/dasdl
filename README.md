@@ -1,6 +1,6 @@
 # DASDL
 
-Download the *Destroy All Software* screencasts while they're free. Thank them for their kind gesture by running up thier AWS bill.
+Download the *Destroy All Software* screencasts while they're free. Thank them for their kind gesture by running up their AWS bill.
 
 ### Usage
 
